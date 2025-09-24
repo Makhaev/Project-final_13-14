@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  todo-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-todo-container
+    ports:
+      - "${TODO_PORT}:${TODO_PORT}"
+    environment:
+      - TODO_PORT=${TODO_PORT}
+      - TODO_PASSWORD=${TODO_PASSWORD}
+      - TODO_DBFILE=${TODO_DBFILE}
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
